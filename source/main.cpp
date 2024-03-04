@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <cmath>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -10,7 +11,6 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/io.hpp>
 
 int main( void )
 {
@@ -67,9 +67,9 @@ int main( void )
     GLuint texture1ID = glGetUniformLocation(shaderID, "texture1Sampler");
     
     // Create the Vertex Array Object (VAO)
-    GLuint vertexArray;
-    glGenVertexArrays(1, &vertexArray);
-    glBindVertexArray(vertexArray);
+    GLuint VAO;
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
     
     // Define vertex co-ordinates
     static const GLfloat vertices[] = {
@@ -119,42 +119,49 @@ int main( void )
     
     // Define texture vertices
     static const GLfloat uvCoords[] = {
+        // front
         0.0f, 0.0f,     // vertex co-ordinates are the same for each side
         1.0f, 0.0f,     // of the cube so repeat every six vertices
         1.0f, 1.0f,
         0.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 1.0f,
-        0.0f, 0.0f,     // right
+        0.0f, 0.0f,     
+        // right
         1.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 1.0f,
-        0.0f, 0.0f,     // back
+        0.0f, 0.0f,     
+        // back
         1.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 1.0f,
-        0.0f, 0.0f,     // left
+        0.0f, 0.0f,     
+        // left
         1.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 1.0f,
-        0.0f, 0.0f,     // bottom
+        0.0f, 0.0f,     
+        // bottom
         1.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 1.0f,
-        0.0f, 0.0f,     // top
+        0.0f, 0.0f,     
+        // top
         1.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 0.0f,
         1.0f, 1.0f,
         0.0f, 1.0f,
+        0.0f, 0.0f,
     };
     
     // Create Vertex Buffer Object
@@ -207,7 +214,7 @@ int main( void )
     // Cleanup
     glDeleteBuffers(1, &vertexBuffer);
     glDeleteBuffers(1, &uvBuffer);
-    glDeleteVertexArrays(1, &vertexArray);
+    glDeleteVertexArrays(1, &VAO);
     glDeleteProgram(shaderID);
     
     // Close OpenGL window and terminate GLFW

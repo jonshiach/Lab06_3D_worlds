@@ -51,6 +51,8 @@ add_executable(Lab06_3D_worlds
 	source/shader.cpp
 	source/texture.hpp
 	source/texture.cpp
+	source/vertexShader.vert
+	source/fragmentShader.frag
 )
 target_link_libraries(Lab06_3D_worlds
 	${ALL_LIBS}
