@@ -1,4 +1,4 @@
-# Lab06 3D World
+# Lab06 3D Worlds
 
 ## Get the files
 
